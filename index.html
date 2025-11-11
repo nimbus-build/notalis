@@ -1,0 +1,31 @@
+<!doctype html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <link rel="icon" type="image/svg+xml" href="/icon.svg" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Notalis</title>
+    <script>
+      // Pre-hydration theme script: sets '.dark' or '.light' on <html> before
+      // the application loads to prevent/minimise flickering.
+      (function() {
+        try {
+          var theme = localStorage.getItem('theme');
+          if (!theme || theme === 'system') {
+            theme = window.matchMedia('(prefers-color-scheme: dark)').matches ? 'dark' : 'light';
+          }
+          document.documentElement.classList.remove('dark', 'light');
+          document.documentElement.classList.add(theme);
+        } catch (e) {
+          // If there any errors, fallback to light theme as opposed to
+          // leaving the application in a potentially undefined state.
+          document.documentElement.classList.add('light');
+        }
+      })();
+    </script>
+  </head>
+  <body>
+    <div id="app"></div>
+    <script type="module" src="/src/main.tsx"></script>
+  </body>
+</html>

@@ -1,0 +1,213 @@
+/* Accessibility: visible focus for custom focusable elements */
+.milkdown-code-block button:focus-visible,
+.milkdown-code-block .language-button:focus-visible {
+  outline: 2px solid hsl(var(--color-primary));
+  outline-offset: 2px;
+  box-shadow: 0 0 0 2px hsl(var(--color-primary) / 0.3);
+}
+/* Editor customization and theme overrides */
+
+/* Base editor layout */
+.milkdown {
+  width: 100vw;
+  max-width: none;
+  margin: 0;
+  padding: 2rem 0.5rem;
+}
+
+/* Light theme (default) - frame theme colors */
+.milkdown {
+  --crepe-color-background: #ffffff;
+  --crepe-color-on-background: #000000;
+  --crepe-color-surface: #f7f7f7;
+  --crepe-color-surface-low: #ededed;
+  --crepe-color-on-surface: #1c1c1c;
+  --crepe-color-on-surface-variant: #4d4d4d;
+  --crepe-color-outline: #a8a8a8;
+  --crepe-color-primary: #333333;
+  --crepe-color-secondary: #cfcfcf;
+  --crepe-color-on-secondary: #000000;
+  --crepe-color-inverse: #f0f0f0;
+  --crepe-color-on-inverse: #1a1a1a;
+  --crepe-color-inline-code: #ba1a1a;
+  --crepe-color-error: #ba1a1a;
+  --crepe-color-hover: #e0e0e0;
+  --crepe-color-selected: #d5d5d5;
+  --crepe-color-inline-area: #cacaca;
+  --crepe-font-title: 'Noto Serif', Cambria, 'Times New Roman', Times, serif;
+  --crepe-font-default: 'Noto Sans', Arial, Helvetica, sans-serif;
+  --crepe-font-code: 'Space Mono', 'Fira Code', Menlo, Monaco, 'Courier New', Courier, monospace;
+  --crepe-shadow-1: 0px 1px 3px 1px rgba(0, 0, 0, 0.15), 0px 1px 2px 0px rgba(0, 0, 0, 0.3);
+  --crepe-shadow-2: 0px 2px 6px 2px rgba(0, 0, 0, 0.15), 0px 1px 2px 0px rgba(0, 0, 0, 0.3);
+}
+
+/* Dark theme color overrides - uses Crepe frame-dark colors */
+
+/* Apply dark theme variables to .milkdown if any ancestor has data-theme="dark" or .theme-dark */
+/* Match header/footer navy background */
+/* Match header/footer navy background for all surfaces */
+.theme-dark .milkdown,
+[data-theme="dark"] .milkdown {
+  --crepe-color-background: hsl(217 33% 12%) !important;
+  --crepe-color-on-background: #e6e6e6 !important;
+  --crepe-color-surface: hsl(217 33% 16%) !important;
+  --crepe-color-surface-low: hsl(217 33% 18%) !important;
+  --crepe-color-on-surface: #d1d1d1 !important;
+  --crepe-color-on-surface-variant: #a9a9a9 !important;
+  --crepe-color-outline: #757575 !important;
+  --crepe-color-primary: #b5b5b5 !important;
+  --crepe-color-secondary: #4d4d4d !important;
+  --crepe-color-on-secondary: #d6d6d6 !important;
+  --crepe-color-inverse: #e5e5e5 !important;
+  --crepe-color-on-inverse: #2a2a2a !important;
+  --crepe-color-inline-code: #ff6666 !important;
+  --crepe-color-error: #ff6666 !important;
+  --crepe-color-hover: #232323 !important;
+  --crepe-color-selected: #2f2f2f !important;
+  --crepe-color-inline-area: #2b2b2b !important;
+  --crepe-shadow-1: 0px 1px 2px 0px rgba(255, 255, 255, 0.3), 0px 1px 3px 1px rgba(255, 255, 255, 0.15) !important;
+  --crepe-shadow-2: 0px 1px 2px 0px rgba(255, 255, 255, 0.3), 0px 2px 6px 2px rgba(255, 255, 255, 0.15) !important;
+}
+
+
+/* Force dark theme for the entire code block and all children */
+.milkdown[data-theme="dark"] .milkdown-code-block,
+.milkdown[data-theme="dark"] .milkdown-code-block *,
+.milkdown.theme-dark .milkdown-code-block,
+.milkdown.theme-dark .milkdown-code-block * {
+  background: var(--crepe-color-surface) !important;
+  color: var(--crepe-color-on-surface) !important;
+  border-color: var(--crepe-color-outline) !important;
+  box-shadow: none !important;
+}
+
+/* CodeMirror dark mode overrides */
+.milkdown[data-theme="dark"] .milkdown-code-block .cm-editor,
+.milkdown.theme-dark .milkdown-code-block .cm-editor {
+  background: var(--crepe-color-surface) !important;
+  color: var(--crepe-color-on-surface) !important;
+}
+.milkdown[data-theme="dark"] .milkdown-code-block .cm-content,
+.milkdown.theme-dark .milkdown-code-block .cm-content {
+  background: transparent !important;
+  color: var(--crepe-color-on-surface) !important;
+}
+.milkdown[data-theme="dark"] .milkdown-code-block .cm-gutters,
+.milkdown.theme-dark .milkdown-code-block .cm-gutters {
+  background: var(--crepe-color-surface) !important;
+  color: var(--crepe-color-on-surface-variant) !important;
+  border-right: 1px solid var(--crepe-color-outline) !important;
+}
+.milkdown[data-theme="dark"] .milkdown-code-block .cm-line,
+.milkdown.theme-dark .milkdown-code-block .cm-line {
+  color: var(--crepe-color-on-surface) !important;
+}
+.milkdown[data-theme="dark"] .milkdown-code-block .cm-activeLine,
+.milkdown.theme-dark .milkdown-code-block .cm-activeLine {
+  background: var(--crepe-color-selected) !important;
+}
+.milkdown[data-theme="dark"] .milkdown-code-block .cm-cursor,
+.milkdown.theme-dark .milkdown-code-block .cm-cursor {
+  border-left: 2px solid var(--crepe-color-primary) !important;
+}
+.milkdown[data-theme="dark"] .milkdown-code-block .cm-selectionLayer,
+.milkdown.theme-dark .milkdown-code-block .cm-selectionLayer {
+  background: var(--crepe-color-selected) !important;
+}
+
+/* Specific overrides for sub-elements */
+.milkdown[data-theme="dark"] .milkdown-code-block .tools .language-button,
+.milkdown.theme-dark .milkdown-code-block .tools .language-button {
+  background: var(--crepe-color-surface-low) !important;
+  color: var(--crepe-color-on-surface-variant) !important;
+}
+.milkdown[data-theme="dark"] .milkdown-code-block .tools .language-button:hover,
+.milkdown.theme-dark .milkdown-code-block .tools .language-button:hover {
+  background: var(--crepe-color-hover) !important;
+}
+.milkdown[data-theme="dark"] .milkdown-code-block .list-wrapper,
+.milkdown.theme-dark .milkdown-code-block .list-wrapper {
+  background: var(--crepe-color-surface-low) !important;
+}
+.milkdown[data-theme="dark"] .milkdown-code-block .language-list-item:hover,
+.milkdown.theme-dark .milkdown-code-block .language-list-item:hover {
+  background: var(--crepe-color-hover) !important;
+}
+.milkdown[data-theme="dark"] .milkdown-code-block .language-list-item.selected,
+.milkdown.theme-dark .milkdown-code-block .language-list-item.selected {
+  background: var(--crepe-color-selected) !important;
+}
+.milkdown[data-theme="dark"] .milkdown-code-block .cm-panel,
+.milkdown.theme-dark .milkdown-code-block .cm-panel {
+  background: var(--crepe-color-surface) !important;
+  color: var(--crepe-color-on-surface) !important;
+}
+.milkdown[data-theme="dark"] .milkdown-code-block .cm-panel input,
+.milkdown.theme-dark .milkdown-code-block .cm-panel input {
+  background: var(--crepe-color-surface-low) !important;
+}
+.milkdown[data-theme="dark"] .milkdown-code-block .cm-panel > button,
+.milkdown.theme-dark .milkdown-code-block .cm-panel > button {
+  background: var(--crepe-color-surface-low) !important;
+  color: var(--crepe-color-on-surface-variant) !important;
+  border-color: var(--crepe-color-outline) !important;
+}
+.milkdown[data-theme="dark"] .milkdown-code-block .cm-panel > button:hover,
+.milkdown.theme-dark .milkdown-code-block .cm-panel > button:hover {
+  background: var(--crepe-color-hover) !important;
+}
+
+/* Additional ProseMirror content styling */
+.milkdown .ProseMirror {
+  padding-top: 20px;
+  color: hsl(var(--color-foreground));
+}
+
+.milkdown .ProseMirror h1,
+.milkdown .ProseMirror h2,
+.milkdown .ProseMirror h3,
+.milkdown .ProseMirror h4,
+.milkdown .ProseMirror h5,
+.milkdown .ProseMirror h6,
+.milkdown .ProseMirror p,
+.milkdown .ProseMirror li {
+  color: hsl(var(--color-foreground));
+}
+
+.milkdown .ProseMirror a {
+  color: hsl(var(--color-primary));
+}
+
+.milkdown .ProseMirror code {
+  background-color: hsl(var(--color-muted));
+  color: hsl(var(--color-foreground));
+}
+
+/* Editor content styling */
+.milkdown .ProseMirror {
+  padding-top: 20px;
+  color: hsl(var(--color-foreground));
+}
+
+.milkdown .ProseMirror h1,
+.milkdown .ProseMirror h2,
+.milkdown .ProseMirror h3,
+.milkdown .ProseMirror h4,
+.milkdown .ProseMirror h5,
+.milkdown .ProseMirror h6 {
+  color: hsl(var(--color-foreground));
+}
+
+.milkdown .ProseMirror p,
+.milkdown .ProseMirror li {
+  color: hsl(var(--color-foreground));
+}
+
+.milkdown .ProseMirror a {
+  color: hsl(var(--color-primary));
+}
+
+.milkdown .ProseMirror code {
+  background-color: hsl(var(--color-muted));
+  color: hsl(var(--color-foreground));
+}
